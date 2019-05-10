@@ -1,0 +1,114 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1>Find Movies</h1>
+    <p>Search for a movie using the form below</p>
+    <form (submit)="searchMovies()">
+
+      <input type="text" [(ngModel)]="searchStr" (keyup)="searchTerm$.next($event.target.value)" name="searchStr" class="form-control"
+        placeholder="Search Movies Here">
+
+      <div *ngIf="results">
+        <div *ngFor="let result of results | slice:0:5">
+          <a routerLink="/movie/{{result.id}}" class="list-group-item clearfix">
+            <div class="pull-left">
+              <h4 class="list-group-item-heading">{{result.title}}</h4>
+              <h6>{{result.release_date | date : "y" }}</h6>
+            </div>
+            <span class="pull-right">
+              <img src ="https://image.tmdb.org/t/p/w500/{{result.poster_path}}" alt="{{result.title}}" class="img-responsive" style="width:30px; height:auto">
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <br>
+
+      <button class="btn btn-primary btn-sm">Find</button>
+    </form>
+
+    <br>
+
+    <form (submit)="getRangeValueDates()">
+      <div class="form-group">
+        <input class="form-control" placeholder="Daterangepicker" bsDaterangepicker [minDate]="minDate" [maxDate]="maxDate" #dpr="bsDaterangepicker">
+      </div>
+      <br>
+      <button class="btn btn-primary btn-sm">Search by date</button>
+    </form>
+
+  </div>
+</div>
+
+
+<div *ngIf="dateRes" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Popular Movies</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div *ngFor="let movie of dateRes; let i = index" class="col-md-2">
+        <div *ngIf="i < 18">
+          <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="{{movie.title}}" class="thumbnail" />
+          <h4>{{movie.title}}</h4>
+          <p>{{movie.release_date}}</p>
+          <p><a routerLink="/movie/{{movie.id}}" class="btn btn-default">View Details</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="searchRes" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Popular Movies</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div *ngFor="let movie of searchRes; let i = index" class="col-md-2">
+        <div *ngIf="i < 18">
+          <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="{{movie.title}}" class="thumbnail" />
+          <h4>{{movie.title}}</h4>
+          <p>{{movie.release_date}}</p>
+          <p><a routerLink="/movie/{{movie.id}}" class="btn btn-default">View Details</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Popular Movies</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div *ngFor="let movie of popularList; let i = index" class="col-md-3">
+        <div *ngIf="i < 4">
+          <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="{{movie.title}}" class="thumbnail" />
+          <h4>{{movie.title}}</h4>
+          <p>{{movie.release_date}}</p>
+          <p><a routerLink="/movie/{{movie.id}}" class="btn btn-default">View Details</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">In Theathers</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div *ngFor="let movie of theatherList; let i = index" class="col-md-3">
+        <div *ngIf="i < 4">
+          <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="{{movie.title}}" class="thumbnail" />
+          <h4>{{movie.title}}</h4>
+          <p>{{movie.release_date}}</p>
+          <p><a routerLink="/movie/{{movie.id}}" class="btn btn-default" >View Details</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
