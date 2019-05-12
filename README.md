@@ -1,7 +1,7 @@
 # Angular-MovieSearch
 
 
-This client-side project contains all the code necessary to reproduce Online Movie Search web application using Angular 4 Javascript framework, Firestore Database and TMDB API.
+This client-side project contains all the code necessary to reproduce Online Movie Search web application using Angular 4 Javascript framework, Firebase Database and TMDB API.
 
 ![home](https://user-images.githubusercontent.com/11573356/57536640-dcbf3680-7344-11e9-90e6-dd28d003d015.png)
 
